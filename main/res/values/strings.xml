@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">revalidatie app</string>
+    <string name="title_activity_information">information</string>
+    <string name="title_information">Information</string>
+    <string name="title_messages">Messages</string>
+    <string name="title_agenda">Agenda</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_activity_navigation">navigation</string>
+</resources>
