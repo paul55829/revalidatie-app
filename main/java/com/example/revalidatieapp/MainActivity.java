@@ -2,6 +2,7 @@ package com.example.revalidatieapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
         editTextUsername = findViewById(R.id.edit_username);
         editTextPassword = findViewById(R.id.edit_password);
+        Log.d(TAG, "test(1) einde oncreate mainActivity");
     }
 
     public void login(View v){
@@ -57,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
                             i++;
                             String correctPassword = documentSnapshot.getString("password");
                             if (password.equals(correctPassword)){
-                                Intent startIntent = new Intent(getApplicationContext(), navigation.class);
-                                //startIntent.putExtra("com.example.revalidatieapp.USERNAME", username);
+                                documentSnapshot.getId();
+                                Intent startIntent = new Intent(getApplicationContext(), Navigation.class);
+                                startIntent.putExtra("com.example.revalidatieapp.USERID", documentSnapshot.getId());
                                 startActivity(startIntent);
                             }
                             else{
