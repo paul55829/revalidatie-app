@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.revalidatieapp.R;
-
 import java.util.ArrayList;
 
 public class MessageAdapter extends BaseAdapter {
@@ -42,7 +41,7 @@ public class MessageAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Log.d(TAG, "test01");
-        View v = inflater.inflate(R.layout.listview_item, null);
+        View v = inflater.inflate(R.layout.listview_message, null);
         TextView fromTextView = (TextView) v.findViewById(R.id.from);
         TextView subjectTextView = (TextView) v.findViewById(R.id.subject);
         TextView timeView = (TextView) v.findViewById(R.id.time);

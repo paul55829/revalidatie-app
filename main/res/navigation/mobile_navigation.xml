@@ -28,4 +28,22 @@
         android:name="com.example.revalidatieapp.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/fragment_message"
+        android:name="com.example.revalidatieapp.ui.messages.MessageFragment"
+        android:label="@string/title_message"
+        tools:layout="@layout/fragment_message" />
+
+    <fragment
+        android:id="@+id/fragment_folders"
+        android:name="com.example.revalidatieapp.ui.information.FoldersFragment"
+        android:label="@string/title_folders"
+        tools:layout="@layout/fragment_folders" />
+
+    <fragment
+        android:id="@+id/fragment_folder"
+        android:name="com.example.revalidatieapp.ui.information.FolderFragment"
+        android:label="@string/title_folder"
+        tools:layout="@layout/fragment_folder" />
 </navigation>

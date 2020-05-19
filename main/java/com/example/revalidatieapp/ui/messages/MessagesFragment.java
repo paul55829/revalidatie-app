@@ -36,11 +36,6 @@ public class MessagesFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
-
-//    public interface SwitchFragment{
-//        void switchFragment(Fragment fragment);
-//    }
-
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         messagesViewModel = ViewModelProviders.of(this).get(MessagesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_messages, container, false);
@@ -54,14 +49,10 @@ public class MessagesFragment extends Fragment {
             }
         });
         */
-        ArrayList<Message> messages = new ArrayList<>();
-        try{
-            userId = getArguments().getString("com.example.revalidatieapp.USERID");
-        }
-        catch(Exception e){
-            userId = messagesViewModel.getUserId();
-        }
 
+        userId = navigationInterface.getUserId();
+
+        //gets the messages and creates a list of them.
         db.collection("users").document(userId).collection("messages").orderBy("date", Query.Direction.DESCENDING).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -91,19 +82,20 @@ public class MessagesFragment extends Fragment {
                     }
                 });
 
+        //when the user clicks on a messages, this will switch the fragment to that of the specific message.
         theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Message message = getMessages().get(position);
                 String theId = message.getId();
 
-                MessageFragment messageFragment = new MessageFragment();
                 Bundle args = new Bundle();
                 String[] info = {theId, userId};
                 args.putStringArray("com.example.revalidatieapp.INFO", info);
-                messageFragment.setArguments(args);
 
-                navigationInterface.switchFragment(messageFragment);
+                int fragmentId = R.id.fragment_message;
+
+                navigationInterface.switchFragment(fragmentId, args);
 
             }
         });
@@ -111,6 +103,7 @@ public class MessagesFragment extends Fragment {
         return root;
     }
 
+    //instantiates a Navigationinterface
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

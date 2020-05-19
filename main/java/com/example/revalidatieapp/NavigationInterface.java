@@ -1,9 +1,13 @@
 package com.example.revalidatieapp;
 
-import androidx.fragment.app.Fragment;
+import android.os.Bundle;
 
 public interface NavigationInterface {
 
-    void switchFragment(Fragment fragment);
+    public void switchFragment(int fragmentId, Bundle args);
+
+    public void switchFragment(int fragmentId);
+
+    public String getUserId();
 
 }

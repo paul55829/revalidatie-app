@@ -5,5 +5,8 @@
     <string name="title_messages">Berichten</string>
     <string name="title_agenda">Agenda</string>
     <string name="title_profile">Profiel</string>
+    <string name="title_message">bericht</string>
     <string name="title_activity_navigation">navigation</string>
+    <string name="title_folders">algemene behandelinformatie</string>
+    <string name="title_folder">informatie folder</string>
 </resources>
