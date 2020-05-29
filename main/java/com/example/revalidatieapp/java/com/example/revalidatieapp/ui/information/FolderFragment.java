@@ -2,7 +2,9 @@ package com.example.revalidatieapp.ui.information;
 
 import android.Manifest;
 import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -28,6 +30,8 @@ public class FolderFragment extends Fragment {
     private String TAG = "FolderFragment";
     private Uri url;
     private String name;
+    private PDFView pdfView;
+    private File file;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_folder, container, false);
@@ -41,6 +45,33 @@ public class FolderFragment extends Fragment {
 
         Log.d(TAG, "test(3) this is the url: " + url);
 
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        file = new File(path, name + ".pdf");
+        pdfView = (PDFView) root.findViewById(R.id.folder);
+        Log.d(TAG, "test(4) dit is Environment.DIRECTORY_DOWNLOADS: " + Environment.DIRECTORY_DOWNLOADS);
+        Log.d(TAG, "test(4) dit is de file: " + file);
+        Log.d(TAG, "test(4) file.exists geeft: " + file.exists());
+        if(file.exists()){
+            pdfView.fromFile(file).load();
+        }
+        else{
+            startDownloadProces();
+            //pdfView.fromFile(file).load();
+        }
+
+
+
+
+
+
+
+        Log.d(TAG, "test(4) fromFile method is geweest.");
+
+        return root;
+    }
+
+     //handles permissions and then starts the startDownloading method
+    private void startDownloadProces(){
         //handles runtime permission for OS Marshmallow and above
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (getContext().checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
@@ -57,21 +88,11 @@ public class FolderFragment extends Fragment {
         else {
             //system os is less than marshmallow, perform download
             startDownloading();
+        }
     }
 
 
-        PDFView pdfView = (PDFView) root.findViewById(R.id.folder);
-
-        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-        Log.d(TAG, "test(4) dit is Environment.DIRECTORY_DOWNLOADS: " + Environment.DIRECTORY_DOWNLOADS);
-        File file = new File(path, name + ".pdf");
-        Log.d(TAG, "test(4) dit is de file: " + file);
-        pdfView.fromFile(file).load();
-        Log.d(TAG, "test(4) fromFile method is geweest.");
-
-        return root;
-    }
-
+    //starts downloading the url
     private void startDownloading(){
 
         //create download request
@@ -90,6 +111,13 @@ public class FolderFragment extends Fragment {
 
         DownloadManager manager = (DownloadManager) getContext().getSystemService(Context.DOWNLOAD_SERVICE);
         manager.enqueue(request);
+        BroadcastReceiver onComplete = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                pdfView.fromFile(file).load();
+            }
+        };
+        //manager.enqueue(request);
     }
 
 
