@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">revalidatie app</string>
+    <string name="title_activity_information">information</string>
+    <string name="title_information">Informatie</string>
+    <string name="title_messages">Berichten</string>
+    <string name="title_agenda">Agenda</string>
+    <string name="title_profile">Profiel</string>
+    <string name="title_message">bericht</string>
+    <string name="title_activity_navigation">navigation</string>
+    <string name="title_folders">algemene behandelinformatie</string>
+    <string name="title_folder">informatie folder</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="notification_on">meldingen zijn ingeschakeld</string>
+    <string name="notification_off">meldingen zijn uitgeschakeld</string>
+    <string name="change_bedtime">verander tijd</string>
+    <string name="change_practice_time">Hoeveel minuten doet u over de oefeningen?</string>
+    <string name="change_rest_time">Hoeveel uur moet er tussen de oefeningen zitten?</string>
+    <string name="dashboard_greeting">Goedemorgen</string>
+    <string name="dashboard_goals">Uw einddoelen:</string>
+    <string-array name="spinner_practice_time">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+    </string-array>
+
+    <string-array name="spinner_rest_time">
+        <item>1:00</item>
+        <item>2:00</item>
+        <item>3:00</item>
+        <item>4:00</item>
+        <item>5:00</item>
+        <item>6:00</item>
+    </string-array>
+</resources>
